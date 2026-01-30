@@ -52,7 +52,9 @@ export const apiRequest = async <T>(
         return { data: await retryResponse.json() };
       } else {
         // If refresh failed, redirect to login
-        window.location.href = '/login';
+        if (typeof window !== 'undefined') {
+          window.location.href = '/login';
+        }
         return { error: 'Authentication required' };
       }
     }
